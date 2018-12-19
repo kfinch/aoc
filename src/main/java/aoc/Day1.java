@@ -1,15 +1,13 @@
-package day1_1;
+package aoc;
 
-import java.io.InputStream;
 import java.util.HashSet;
 import java.util.Scanner;
 import java.util.Set;
 
-public class Day1_1_Main {
+public class Day1 {
 
-    private static final ClassLoader loader = Day1_1_Main.class.getClassLoader();
-
-    public static void main (String args[]) {
+    public static void main (String args[])
+    {
         try {
             day1_1();
             day1_2();
@@ -20,8 +18,7 @@ public class Day1_1_Main {
 
     private static void day1_1() throws Exception
     {
-        InputStream freqInputStream = loader.getResourceAsStream("day1freqs.txt");
-        Scanner freqScanner = new Scanner(freqInputStream);
+        Scanner freqScanner = Utils.getScanner("day1freqs.txt");
 
         int currFreq = 0;
         while (freqScanner.hasNextInt())
@@ -34,8 +31,7 @@ public class Day1_1_Main {
 
     private static void day1_2() throws Exception
     {
-        InputStream freqInputStream = loader.getResourceAsStream("day1freqs.txt");
-        Scanner freqScanner = new Scanner(freqInputStream);
+        Scanner freqScanner = Utils.getScanner("day1freqs.txt");
 
         Set<Integer> found = new HashSet<>();
         int currFreq = 0;
@@ -43,8 +39,7 @@ public class Day1_1_Main {
 
         while(true) {
             if (!freqScanner.hasNextInt()) {
-                freqInputStream = loader.getResourceAsStream("day1freqs.txt");
-                freqScanner = new Scanner(freqInputStream);
+                freqScanner = Utils.getScanner("day1freqs.txt");
             }
             currFreq += freqScanner.nextInt();
             boolean notSeen = found.add(currFreq);
