@@ -76,8 +76,26 @@ public class Day4 {
             }
         }
 
-        System.out.println("Guard " + mostAsleepGuard.id + " slept most on minute " + mostAsleepMinute + " -> " + (mostAsleepGuard.id * mostAsleepMinute));
+        System.out.println("#1 Guard " + mostAsleepGuard.id + " slept most on minute " + mostAsleepMinute + " -> " + (mostAsleepGuard.id * mostAsleepMinute));
+
+        mostAsleepMinute = -1;
+        minutesAsleepOnMinute = 0;
+        int mostAsleepGuardId = -1;
+
+        for (Guard g : guardsById.values()) {
+            for (int i=0; i<60; i++) {
+                int currAsleep = g.sleepByMinute[i];
+                if (currAsleep > minutesAsleepOnMinute) {
+                    minutesAsleepOnMinute = currAsleep;
+                    mostAsleepMinute = i;
+                    mostAsleepGuardId = g.id;
+                }
+            }
+        }
+
+        System.out.println("#2 Guard " + mostAsleepGuardId + " slept most on minute " + mostAsleepMinute + " -> " + (mostAsleepGuardId * mostAsleepMinute));
     }
+
 
     private static class Guard {
         int id;
