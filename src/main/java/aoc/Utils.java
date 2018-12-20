@@ -1,13 +1,13 @@
 package aoc;
 
-import java.io.InputStream;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 public class Utils {
 
-    private static final ClassLoader loader = Utils.class.getClassLoader();
+    public static final ClassLoader loader = Utils.class.getClassLoader();
 
     public static Scanner getScanner(String fileName) {
         InputStream stream = loader.getResourceAsStream(fileName);

@@ -2,10 +2,9 @@ package aoc;
 
 import com.google.common.collect.ComparisonChain;
 
-import java.util.NavigableMap;
-import java.util.NavigableSet;
-import java.util.Scanner;
-import java.util.TreeSet;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -24,7 +23,7 @@ public class Day4 {
 
         Pattern capturePattern = Pattern.compile("\\[([0-9]+)-([0-9]+)-([0-9]+) ([0-9]+):([0-9]+)\\] (.*)");
 
-        NavigableSet<Event> eventsInOrder = new TreeSet<>();
+        List<Event> events = new ArrayList<>();
 
         while (sc.hasNextLine()) {
             String line = sc.nextLine();
@@ -37,10 +36,59 @@ public class Day4 {
             int minute = Integer.parseInt(m.group(5));
             String eventString = m.group(6);
             Event event = new Event(year, month, day, hour, minute, eventString);
-            eventsInOrder.add(event);
+            events.add(event);
         }
 
-        // TODO fill in sleepies
+        events.sort(Event::compareTo);
+
+        Pattern guardNumberCapture = Pattern.compile("Guard #([0-9]+).*");
+
+        Map<Integer, Guard> guardsById = new HashMap<>();
+        Guard activeGuard = null;
+        int fellAlseepOn = 0;
+        for (Event event : events) {
+            if (event.eventString.startsWith("Guard")) {
+                Matcher guardNumberMatcher = guardNumberCapture.matcher(event.eventString);
+                guardNumberMatcher.matches();
+                int guardNum = Integer.parseInt(guardNumberMatcher.group(1));
+                activeGuard = guardsById.computeIfAbsent(guardNum, num -> new Guard(num));
+            } else if (event.eventString.startsWith("falls asleep")) {
+                fellAlseepOn = event.minute;
+            } else if (event.eventString.startsWith("wakes up")) {
+                int wokeUpOn = event.minute;
+                activeGuard.totalSleepingMinutes += (wokeUpOn - fellAlseepOn);
+                for (int i=fellAlseepOn; i<wokeUpOn; i++) {
+                    activeGuard.sleepByMinute[i]++;
+                }
+            }
+        }
+
+        Guard mostAsleepGuard = guardsById.values().stream()
+                .reduce((g1, g2) -> g1.totalSleepingMinutes > g2.totalSleepingMinutes ? g1 : g2)
+                .get();
+        int mostAsleepMinute = -1;
+        int minutesAsleepOnMinute = 0;
+        for (int i=0; i<60; i++) {
+            int currAsleep = mostAsleepGuard.sleepByMinute[i];
+            if (currAsleep > minutesAsleepOnMinute) {
+                minutesAsleepOnMinute = currAsleep;
+                mostAsleepMinute = i;
+            }
+        }
+
+        System.out.println("Guard " + mostAsleepGuard.id + " slept most on minute " + mostAsleepMinute + " -> " + (mostAsleepGuard.id * mostAsleepMinute));
+    }
+
+    private static class Guard {
+        int id;
+        int totalSleepingMinutes;
+        int[] sleepByMinute;
+
+        private Guard(int id) {
+            this.id = id;
+            this.totalSleepingMinutes = 0;
+            this.sleepByMinute = new int[60];
+        }
     }
 
     private static class Event implements Comparable<Event> {
