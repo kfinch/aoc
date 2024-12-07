@@ -1,7 +1,8 @@
-package aoc;
+package aoc2018;
 
 import com.google.common.collect.HashMultiset;
 import com.google.common.collect.Multiset;
+import util.FileUtils;
 
 import java.util.Scanner;
 
@@ -19,7 +20,7 @@ public class Day2 {
 
     private static void day2_1() throws Exception
     {
-        Scanner sc = Utils.getScanner("day2codes.txt");
+        Scanner sc = FileUtils.getScanner("2018/day2codes.txt");
         int twoCount = 0;
         int threeCount = 0;
         while (sc.hasNext()) {
@@ -48,7 +49,7 @@ public class Day2 {
 
     private static void day2_2() throws Exception
     {
-        String[] codes = Utils.getTokenList("day2codes.txt").toArray(new String[0]);
+        String[] codes = FileUtils.getTokenList("2018/day2codes.txt").toArray(new String[0]);
 
         for (int i=0; i<codes.length; i++) {
             String codeI = codes[i];

@@ -1,4 +1,6 @@
-package aoc;
+package aoc2018;
+
+import util.FileUtils;
 
 import java.util.*;
 import java.util.regex.Matcher;
@@ -16,7 +18,7 @@ public class Day7 {
     }
 
     private static void day7_1() {
-        Scanner sc = Utils.getScanner("day7input.txt");
+        Scanner sc = FileUtils.getScanner("2018/day7input.txt");
 
         // build out nodes
         Map<Character, Node> nodeMap = new HashMap<>();
@@ -59,7 +61,7 @@ public class Day7 {
     }
 
     private static void day7_2() {
-        Scanner sc = Utils.getScanner("day7input.txt");
+        Scanner sc = FileUtils.getScanner("2018/day7input.txt");
 
         // build out nodes
         Map<Character, Node> nodeMap = new HashMap<>();

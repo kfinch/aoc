@@ -1,4 +1,6 @@
-package aoc;
+package aoc2018;
+
+import util.FileUtils;
 
 import java.util.HashSet;
 import java.util.Scanner;
@@ -18,7 +20,7 @@ public class Day1 {
 
     private static void day1_1() throws Exception
     {
-        Scanner freqScanner = Utils.getScanner("day1freqs.txt");
+        Scanner freqScanner = FileUtils.getScanner("2018/day1freqs.txt");
 
         int currFreq = 0;
         while (freqScanner.hasNextInt())
@@ -31,7 +33,7 @@ public class Day1 {
 
     private static void day1_2() throws Exception
     {
-        Scanner freqScanner = Utils.getScanner("day1freqs.txt");
+        Scanner freqScanner = FileUtils.getScanner("2018/day1freqs.txt");
 
         Set<Integer> found = new HashSet<>();
         int currFreq = 0;
@@ -39,7 +41,7 @@ public class Day1 {
 
         while(true) {
             if (!freqScanner.hasNextInt()) {
-                freqScanner = Utils.getScanner("day1freqs.txt");
+                freqScanner = FileUtils.getScanner("2018/day1freqs.txt");
             }
             currFreq += freqScanner.nextInt();
             boolean notSeen = found.add(currFreq);

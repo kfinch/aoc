@@ -1,9 +1,8 @@
-package aoc;
+package aoc2018;
 
 import com.google.common.collect.ComparisonChain;
+import util.FileUtils;
 
-import java.io.BufferedWriter;
-import java.io.File;
 import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -19,7 +18,7 @@ public class Day4 {
     }
 
     private static void day4_1() {
-        Scanner sc = Utils.getScanner("day4input.txt");
+        Scanner sc = FileUtils.getScanner("2018/day4input.txt");
 
         Pattern capturePattern = Pattern.compile("\\[([0-9]+)-([0-9]+)-([0-9]+) ([0-9]+):([0-9]+)\\] (.*)");
 

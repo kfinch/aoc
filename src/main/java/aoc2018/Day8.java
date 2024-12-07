@@ -1,4 +1,6 @@
-package aoc;
+package aoc2018;
+
+import util.FileUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,7 +17,7 @@ public class Day8 {
     }
 
     private static void day8() {
-        Scanner sc = Utils.getScanner("day8input.txt");
+        Scanner sc = FileUtils.getScanner("2018/day8input.txt");
 
         Node head = buildTree(sc);
         System.out.println("Sum: " + sumTree(head));

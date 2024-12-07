@@ -1,4 +1,6 @@
-package aoc;
+package aoc2018;
+
+import util.FileUtils;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -146,7 +148,7 @@ public class Day6 {
     }
 
     private static List<Point> readPoints() {
-        Scanner sc = Utils.getScanner("day6input.txt");
+        Scanner sc = FileUtils.getScanner("2018/day6input.txt");
         Pattern pointPattern = Pattern.compile("([0-9]+), ([0-9]+)");
 
         List<Point> points = new ArrayList<>();

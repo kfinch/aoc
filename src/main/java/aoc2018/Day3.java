@@ -1,4 +1,6 @@
-package aoc;
+package aoc2018;
+
+import util.FileUtils;
 
 import java.util.Arrays;
 import java.util.HashSet;
@@ -18,7 +20,7 @@ public class Day3 {
     }
 
     private static void day3() throws Exception {
-        Scanner sc = Utils.getScanner("day3input.txt");
+        Scanner sc = FileUtils.getScanner("2018/day3input.txt");
         int arraySize = 1100;
 
         // each element is 0 for unfilled, ID for claimed by one, -1 for claimed by many

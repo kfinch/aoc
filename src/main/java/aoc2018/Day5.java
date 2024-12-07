@@ -1,4 +1,6 @@
-package aoc;
+package aoc2018;
+
+import util.FileUtils;
 
 import java.util.Scanner;
 
@@ -16,7 +18,7 @@ public class Day5 {
     }
 
     private static void day5_1() {
-        Scanner sc = Utils.getScanner("day5input.txt");
+        Scanner sc = FileUtils.getScanner("2018/day5input.txt");
         String polymer = sc.next();
         char[] elements = polymer.toCharArray();
 
@@ -26,7 +28,7 @@ public class Day5 {
     }
 
     private static void day5_2() {
-        Scanner sc = Utils.getScanner("day5input.txt");
+        Scanner sc = FileUtils.getScanner("2018/day5input.txt");
         String polymer = sc.next();
         char[] elements = polymer.toCharArray();
         char[] alphabet = {'a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'};
